@@ -1,39 +1,65 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tienda Bsale</title>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous" />
+        <!-- Add fontAwesome -->
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.1/css/all.css" integrity="sha384-vp86vTRFVJgpjF9jiIGPEEqYqlDwgyBgEF109VFjmqGmIY/Y4HV4d3Gp2irVfcrp" crossorigin="anonymous">
+    
+  <style>
+    img {
+      height: 200px;
+      object-fit: contain;
+    }
+  </style>
+  
+  <title>Tienda Bsale</title>
 </head>
+
 <body>
+    <div class="container-fluid">
+        <nav class="navbar navbar-light bg-light">
+            <a class="navbar-brand">Tienda Bsale</a>
+            <form class="form-inline">
+                <div class="dropdown">
+                    <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                      Elegir Categoria
+                    </button>
+                    <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
+                      <button class="dropdown-item" type="button" onclick="loadCategoryInfo('bebida energetica')">Bebida Energetica</button>
+                      <button class="dropdown-item" type="button" onclick="loadCategoryInfo('pisco')">Pisco</button>
+                      <button class="dropdown-item" type="button" onclick="loadCategoryInfo('ron')">Ron</button>
+                      <button class="dropdown-item" type="button" onclick="loadCategoryInfo('bebida')">Bebida</button>
+                      <button class="dropdown-item" type="button" onclick="loadCategoryInfo('snack')">Snack</button>
+                      <button class="dropdown-item" type="button" onclick="loadCategoryInfo('cerveza')">Cerveza</button>
+                      <button class="dropdown-item" type="button" onclick="loadCategoryInfo('vodka')">Vodka</button>
+                    </div>
+                  </div>
+                <input class="form-control mr-sm-2" type="search" placeholder="Buscar" aria-label="Search">
+                <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Buscar</button>
+            </form>
+        </nav>
+        <div class="card-container">
+        
+        </div>
+        
+    </div>
 
-
-<script>
-var request = new XMLHttpRequest();
-request.open('GET', 'https://bsaletest-api.herokuapp.com/api/product', true);
-
-request.onload = function() {
-  if (this.status >= 200 && this.status < 400) {
-    // Success!
-    var response = JSON.parse(this.response);
-    console.log(response);
-    response.data.forEach(element => {
-    var newElement = document.createElement("p");
-    newElement.innerText = element.name;
-    document.body.appendChild(newElement);    
-    });
-  } else {
-    // We reached our target server, but it returned an error
-  }
-};
-
-request.onerror = function() {
-  // There was a connection error of some sort
-};
-
-request.send();
-
-</script>    
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous">
+    </script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous">
+    </script>
+    <script src="script.js"></script>
 </body>
+
 </html>
