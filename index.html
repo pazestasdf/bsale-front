@@ -4,9 +4,36 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tienda BSale</title>
+    <title>Tienda Bsale</title>
 </head>
 <body>
-    
+
+
+<script>
+var request = new XMLHttpRequest();
+request.open('GET', 'https://bsaletest-api.herokuapp.com/api/product', true);
+
+request.onload = function() {
+  if (this.status >= 200 && this.status < 400) {
+    // Success!
+    var response = JSON.parse(this.response);
+    console.log(response);
+    response.data.forEach(element => {
+    var newElement = document.createElement("p");
+    newElement.innerText = element.name;
+    document.body.appendChild(newElement);    
+    });
+  } else {
+    // We reached our target server, but it returned an error
+  }
+};
+
+request.onerror = function() {
+  // There was a connection error of some sort
+};
+
+request.send();
+
+</script>    
 </body>
 </html>
