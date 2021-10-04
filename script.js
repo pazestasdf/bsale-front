@@ -38,30 +38,30 @@ function loadCategories(data) {
 function loadCategoryInfo(categoryName) {
     switch (categoryName) {
         case 'bebida energetica':
-            renderCategory('energetica', bebidaEnergetica);
+            renderProducts(bebidaEnergetica);
             break;
         case 'pisco':
-            renderCategory('pisco', pisco);
+            renderProducts(pisco);
             break;
         case 'ron':
-            renderCategory('ron', ron);
+            renderProducts(ron);
             break;
         case 'bebida':
-            renderCategory('bebida', bebida);
+            renderProducts(bebida);
             break;
         case 'snack':
-            renderCategory('snack', snack);
+            renderProducts(snack);
             break;
         case 'cerveza':
-            renderCategory('cerveza', cerveza);
+            renderProducts(cerveza);
             break;
         case 'vodka':
-            renderCategory('vodka', vodka);
+            renderProducts(vodka);
             break;
     }
 }
 
-function renderCategory(category, categoryInfo) {
+function renderProducts(categoryInfo) {
     $('.card-container').empty();
     var cardCounter = 0;
     for (let i = 0; i < categoryInfo.length; i++) {
@@ -114,6 +114,38 @@ function renderCategory(category, categoryInfo) {
             }
         }
     }
+}
+
+function searchProductsByName(){
+    var searchParam = $('#searchInput').val();
+    var request = new XMLHttpRequest();
+    request.open('GET', 'https://bsaletest-api.herokuapp.com/api/product/' + searchParam, true);
+    request.onload = function () {
+        if (this.status >= 200 && this.status < 400) {
+            // Success!
+            var response = JSON.parse(this.response);
+            if (response.data.length>0){
+                renderProducts(response.data);
+            }
+            else{
+                $('.card-container').empty();
+                $('.card-container').append(`
+                <div class="alert alert-danger text-center" role="alert">
+                    <h5>Ooops! No se han encontrado productos que contengan en su nombre: ${searchParam}</h5>
+                </div>
+                `);
+            }
+           
+        } else {
+            // We reached our target server, but it returned an error
+        }
+    };
+    
+    request.onerror = function () {
+        // There was a connection error of some sort
+    };
+    
+    request.send();
 
 }
 var request = new XMLHttpRequest();
@@ -123,8 +155,12 @@ request.onload = function () {
     if (this.status >= 200 && this.status < 400) {
         // Success!
         var response = JSON.parse(this.response);
-        loadCategories(response.data)
-        console.log('categoriesLoad')
+        loadCategories(response.data);
+        console.log('categoriesLoad');
+        // se cargan por defecto category: pisco
+        loadCategoryInfo('pisco');
+
+
         // console.log(response);
         // response.data.forEach(element => {
         // var newElement = document.createElement("p");

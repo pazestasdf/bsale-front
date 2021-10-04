@@ -8,46 +8,50 @@
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
         integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous" />
-        <!-- Add fontAwesome -->
-  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.1/css/all.css" integrity="sha384-vp86vTRFVJgpjF9jiIGPEEqYqlDwgyBgEF109VFjmqGmIY/Y4HV4d3Gp2irVfcrp" crossorigin="anonymous">
-    
-  <style>
-    img {
-      height: 200px;
-      object-fit: contain;
-    }
-  </style>
-  
-  <title>Tienda Bsale</title>
+    <!-- Add fontAwesome -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.1/css/all.css"
+        integrity="sha384-vp86vTRFVJgpjF9jiIGPEEqYqlDwgyBgEF109VFjmqGmIY/Y4HV4d3Gp2irVfcrp" crossorigin="anonymous">
+
+    <style>
+        img {
+            height: 200px;
+            object-fit: contain;
+        }
+    </style>
+
+    <title>Tienda Bsale</title>
 </head>
 
 <body>
     <div class="container-fluid">
         <nav class="navbar navbar-light bg-light">
             <a class="navbar-brand">Tienda Bsale</a>
-            <form class="form-inline">
+            <form class="form-inline" onsubmit="return false;">
                 <div class="dropdown">
-                    <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                      Elegir Categoria
+                    <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenu2"
+                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Elegir Categoria
                     </button>
                     <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
-                      <button class="dropdown-item" type="button" onclick="loadCategoryInfo('bebida energetica')">Bebida Energetica</button>
-                      <button class="dropdown-item" type="button" onclick="loadCategoryInfo('pisco')">Pisco</button>
-                      <button class="dropdown-item" type="button" onclick="loadCategoryInfo('ron')">Ron</button>
-                      <button class="dropdown-item" type="button" onclick="loadCategoryInfo('bebida')">Bebida</button>
-                      <button class="dropdown-item" type="button" onclick="loadCategoryInfo('snack')">Snack</button>
-                      <button class="dropdown-item" type="button" onclick="loadCategoryInfo('cerveza')">Cerveza</button>
-                      <button class="dropdown-item" type="button" onclick="loadCategoryInfo('vodka')">Vodka</button>
+                        <button class="dropdown-item" type="button"
+                            onclick="loadCategoryInfo('bebida energetica')">Bebida Energetica</button>
+                        <button class="dropdown-item" type="button" onclick="loadCategoryInfo('pisco')">Pisco</button>
+                        <button class="dropdown-item" type="button" onclick="loadCategoryInfo('ron')">Ron</button>
+                        <button class="dropdown-item" type="button" onclick="loadCategoryInfo('bebida')">Bebida</button>
+                        <button class="dropdown-item" type="button" onclick="loadCategoryInfo('snack')">Snack</button>
+                        <button class="dropdown-item" type="button"
+                            onclick="loadCategoryInfo('cerveza')">Cerveza</button>
+                        <button class="dropdown-item" type="button" onclick="loadCategoryInfo('vodka')">Vodka</button>
                     </div>
-                  </div>
-                <input class="form-control mr-sm-2" type="search" placeholder="Buscar" aria-label="Search">
-                <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Buscar</button>
+                </div>
+                <input class="form-control mr-sm-2" placeholder="Buscar" id="searchInput">
+                <button class="btn btn-outline-success my-2 my-sm-0" onclick="searchProductsByName()">Buscar</button>
             </form>
         </nav>
         <div class="card-container">
-        
+
         </div>
-        
+
     </div>
 
     <!-- Optional JavaScript -->
